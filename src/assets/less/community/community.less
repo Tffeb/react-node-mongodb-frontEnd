@@ -1,0 +1,41 @@
+.community_list {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  .list_content {
+    position: relative;
+    width: 100%;
+    .replay_comment {
+      // background: rgb(231, 231, 231);
+      // padding: 10px 10px;
+      display: block;
+      min-height: 16px;
+    }
+    .replayHidden {
+      display: none;
+    }
+    .content {
+      display: flex;
+      margin-top: 20px;
+      img {
+        min-width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+    .list_img {
+      width: 280px;
+      img {
+        margin: 0 10px 10px 0;
+      }
+    }
+    .list_date {
+      color: #000;
+      margin-bottom: 10px;
+      .isPraise {
+        color: orange;
+      }
+    }
+  }
+}
