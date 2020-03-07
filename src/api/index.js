@@ -56,7 +56,7 @@ export const reqCommentPraise = (praise) => ajax(BASE_URL + '/commentPraise', pr
 export const reqNoCommentPraise = (nopraise) => ajax(BASE_URL + '/noCommentPraise', nopraise, 'POST')
 
 //随机获取casoursel
-export const reqCasoursel = () => ajax(BASE_URL + '/carousel/img', 'GET')
+export const reqCasoursel = () => ajax(BASE_URL + '/carousel/img')
 //hot_spots接口
 export const reqHotSpots = () => ajax(BASE_URL + '/hotspots')
 //hot_spots详情接口
@@ -69,6 +69,11 @@ export const reqFoodDetail = ({ name, id }) => ajax(BASE_URL + '/food/detail', {
 export const reqCity = () => ajax(BASE_URL + '/city')
 //生成订单
 export const reqOrder = (order) => ajax(BASE_URL + '/order', order, 'POST')
+//订单支付信息
+export const reqPayInfo = (id) => ajax(BASE_URL + '/order/payinfo', id, 'GET')
+
+//订单去支付
+export const reqToPay = (id_obj) => ajax(BASE_URL + '/order/topay', id_obj, 'GET')
 //查看所有订单
 export const reqOrderInfo = () => ajax(BASE_URL + '/orderinfo')
 //删除订单

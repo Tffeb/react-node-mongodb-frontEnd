@@ -18,6 +18,7 @@ import store from './store'
 import DetailPage from './containers/main/homePage/detailPage'
 import FoodDetail from './containers/main/homePage/foodDetail'
 import BuyPage from './containers/main/order/buypage'
+import ToPay from './containers/main/order/toPay'
 ReactDOM.render((
   <Provider store={store}>
     <BrowserRouter>
@@ -34,6 +35,7 @@ ReactDOM.render((
         <Route path="/fooddetail" component={FoodDetail}></Route>
         <Route path='/main/community/sendpage' component={sendPage} />
         <Route path='/main/community/:id' component={CommentPage} />
+        <Route path='/main/order/topay' component={ToPay} />
         <Route path='/main/my/personaldata' component={PersonalData} />
         <Route path="/main" component={Main}></Route>
         <Redirect to="/main" />

@@ -39,7 +39,11 @@ class DetailPage extends Component {
     if (this.loginInfo === 1) {
       alert('未登录', '请您先登录!', [
         { text: 'Cancel', onPress: () => console.log('cancel') },
-        { text: 'Ok', onPress: () => this.props.history.push('/login') }
+        {
+          text: 'Ok',
+          onPress: () =>
+            this.props.history.push(`/login?url=${this.props.match.url}`)
+        }
       ])
     } else {
       this.props.history.replace(

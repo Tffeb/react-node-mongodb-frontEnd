@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { NavBar, Icon, Result, Checkbox, Button, Toast } from 'antd-mobile'
 import { useHistory } from 'react-router-dom'
 import { reqSendComment, reqDeletmyComment } from '../../../api'
-import { observer } from 'mobx-react'
 import store from '../../../store'
 function SendComment() {
   const CheckboxItem = Checkbox.CheckboxItem
@@ -217,4 +216,4 @@ function SendComment() {
     </div>
   )
 }
-export default observer(SendComment)
+export default SendComment

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { NavBar, Icon, Result } from 'antd-mobile'
 import { reqPraising } from '../../../api'
 import { useHistory } from 'react-router-dom'
-import { observer } from 'mobx-react'
 import store from '../../../store'
 function Prasing() {
   const proxyUrl = store.proxy
@@ -77,4 +76,4 @@ function Prasing() {
     </div>
   )
 }
-export default observer(Prasing)
+export default Prasing

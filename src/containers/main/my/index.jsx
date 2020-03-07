@@ -40,7 +40,7 @@ class My extends Component {
     this.loginInfo = res.data
   }
   toLogin = () => {
-    this.props.history.replace('/login')
+    this.props.history.replace(`/login?url=${this.props.match.url}`)
   }
   reqUserInfo = async () => {
     const res = await reqUserInfo()

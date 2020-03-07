@@ -37,7 +37,7 @@ class Register extends Component {
   }
   successToast = () => {
     Toast.success('注册成功,正在进入!!!', 1, () => {
-      this.props.history.goBack() //返回上一页
+      this.props.history.push(this.props.location.search.split('=')[1]) //返回上一页
     })
   }
   // 点击注册调用
@@ -70,10 +70,10 @@ class Register extends Component {
   }
 
   toLogin = () => {
-    this.props.history.replace('/login')
+    this.props.history.replace(`/login${this.props.location.search}`)
   }
-  toHome = () => {
-    this.props.history.replace('/main/homepage')
+  toBack = () => {
+    this.props.history.replace(`/login${this.props.location.search}`)
   }
   render() {
     // 如果redirectTo有值, 就需要重定向到指定的路由
@@ -87,7 +87,7 @@ class Register extends Component {
       <div>
         <NavBar
           mode="dark"
-          leftContent={<Icon type="left" onClick={this.toHome} />}
+          leftContent={<Icon type="left" onClick={this.toBack} />}
         >
           注册
         </NavBar>

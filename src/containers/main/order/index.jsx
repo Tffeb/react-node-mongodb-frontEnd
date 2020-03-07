@@ -60,8 +60,14 @@ class Order extends Component {
       }
     ])
   }
+  timestampToTime = timestamp => {
+    return new Date(parseFloat(timestamp)).toLocaleString()
+  }
   toLogin = () => {
-    this.props.history.replace('/login')
+    this.props.history.replace(`/login?url=${this.props.match.url}`)
+  }
+  toPay = item => {
+    this.props.history.push(`/main/order/topay?id=${item._id}`)
   }
   render() {
     const tabs = [
@@ -104,6 +110,9 @@ class Order extends Component {
                   <div className="order_item" key={index}>
                     <div className="item_title">
                       <span>{item.ordername}门票</span>
+                      <span style={{ marginLeft: '20px' }}>
+                        订单编号：{item._id}
+                      </span>
                     </div>
                     <div className="item">
                       <div className="item_img">
@@ -116,15 +125,23 @@ class Order extends Component {
                         <div>
                           总价：<span>{item.price}元</span>
                         </div>
+                        <br />
+                        <div>
+                          订单创建时间：
+                          <p>{this.timestampToTime(item.createTime)}</p>
+                        </div>
                       </div>
                     </div>
                     <div className="pay">
-                      <Button
-                        type="default"
-                        disabled={item.state === 0 ? true : false}
-                      >
-                        {item.state === 1 ? '去付款' : '已付款'}
-                      </Button>
+                      {item.state === 1 ? (
+                        <Button type="default" onClick={() => this.toPay(item)}>
+                          去付款
+                        </Button>
+                      ) : (
+                        <Button type="default" disabled>
+                          已付款
+                        </Button>
+                      )}
                       <Button
                         type="default"
                         onClick={() => this.delOrder(item)}
@@ -154,6 +171,9 @@ class Order extends Component {
                   <div className="order_item" key={index}>
                     <div className="item_title">
                       <span>{item.ordername}门票</span>
+                      <span style={{ marginLeft: '20px' }}>
+                        订单编号：{item._id}
+                      </span>
                     </div>
                     <div className="item">
                       <div className="item_img">
@@ -166,10 +186,17 @@ class Order extends Component {
                         <div>
                           总价：<span>{item.price}元</span>
                         </div>
+                        <br />
+                        <div>
+                          订单创建时间：
+                          <p>{this.timestampToTime(item.createTime)}</p>
+                        </div>
                       </div>
                     </div>
                     <div className="pay">
-                      <Button type="default">去付款</Button>
+                      <Button type="default" onClick={() => this.toPay(item)}>
+                        去付款
+                      </Button>
                       <Button
                         type="default"
                         onClick={() => this.delOrder(item)}
@@ -199,6 +226,9 @@ class Order extends Component {
                   <div className="order_item" key={index}>
                     <div className="item_title">
                       <span>{item.ordername}门票</span>
+                      <span style={{ marginLeft: '20px' }}>
+                        订单编号：{item._id}
+                      </span>
                     </div>
                     <div className="item">
                       <div className="item_img">
@@ -210,6 +240,11 @@ class Order extends Component {
                         </div>
                         <div>
                           总价：<span>{item.price}元</span>
+                        </div>
+                        <br />
+                        <div>
+                          订单创建时间：
+                          <p>{this.timestampToTime(item.createTime)}</p>
                         </div>
                       </div>
                     </div>

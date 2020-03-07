@@ -48,7 +48,7 @@ class PersonalData extends Component {
   }
   failToast = info => {
     Toast.fail(info.msg, 2, () => {
-      this.props.history.replace('/login')
+      this.props.history.replace(`/login?url=${this.props.match.url}`)
     })
   }
   inputChange = e => {

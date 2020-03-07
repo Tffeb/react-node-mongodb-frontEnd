@@ -21,6 +21,7 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.initData()
+    console.log('dd', this.props.location.search.split('=')[1])
   }
   initData = () => {
     this.userInfo = {
@@ -36,7 +37,7 @@ class Login extends Component {
   }
   successToast = () => {
     Toast.success('登录成功!!!', 1, () => {
-      this.props.history.goBack() //返回上一页
+      this.props.history.push(this.props.location.search.split('=')[1]) //返回之前页
     })
   }
   // 点击登录调用
@@ -58,10 +59,12 @@ class Login extends Component {
     }
   }
   toRegister = () => {
-    this.props.history.replace('/register')
+    this.props.history.replace(
+      `/register?url=${this.props.location.search.split('=')[1]}`
+    )
   }
-  toHome = () => {
-    this.props.history.replace('/main/homepage')
+  toBack = () => {
+    this.props.history.replace(this.props.location.search.split('=')[1])
   }
   render() {
     const style = {
@@ -74,7 +77,7 @@ class Login extends Component {
       <div>
         <NavBar
           mode="dark"
-          leftContent={<Icon type="left" onClick={this.toHome} />}
+          leftContent={<Icon type="left" onClick={this.toBack} />}
         >
           登录
         </NavBar>

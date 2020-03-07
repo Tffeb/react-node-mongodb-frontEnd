@@ -24,7 +24,11 @@ class Search extends Component {
       if (res.data.code === 1) {
         alert('未登录', '请您先登录!', [
           { text: 'Cancel', onPress: () => console.log('cancel') },
-          { text: 'Ok', onPress: () => this.props.history.replace('/login') }
+          {
+            text: 'Ok',
+            onPress: () =>
+              this.props.history.replace(`/login?url=${this.props.match.url}`)
+          }
         ])
       }
     }

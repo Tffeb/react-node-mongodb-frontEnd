@@ -22,6 +22,7 @@ import {
 } from '../../../api'
 import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
+import { PhotoSlider } from 'react-photo-view'
 import '../../../assets/js/scrollToAnchor'
 const alert = Modal.alert
 
@@ -45,6 +46,8 @@ class CommentPage extends Component {
   @observable isCommentIndex = null
   @observable praiseClass = false
   @observable commentPraise = false
+  @observable imgIndex = 0
+  @observable visible = false
   @observable src =
     'https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original'
   constructor(props) {
@@ -82,7 +85,11 @@ class CommentPage extends Component {
     if (this.loginInfo === null) {
       alert('未登录', '请您先登录!', [
         { text: 'Cancel', onPress: () => console.log('cancel') },
-        { text: 'Ok', onPress: () => this.props.history.replace('/login') }
+        {
+          text: 'Ok',
+          onPress: () =>
+            this.props.history.replace(`/login?url=${this.props.match.url}`)
+        }
       ])
     } else {
       if (!e.target.parentNode.getAttribute('class')) {
@@ -98,7 +105,11 @@ class CommentPage extends Component {
     if (this.loginInfo === null) {
       alert('未登录', '请您先登录!', [
         { text: 'Cancel', onPress: () => console.log('cancel') },
-        { text: 'Ok', onPress: () => this.props.history.replace('/login') }
+        {
+          text: 'Ok',
+          onPress: () =>
+            this.props.history.replace(`/login?url=${this.props.match.url}`)
+        }
       ])
     } else {
       if (!e.target.parentNode.getAttribute('class')) {
@@ -133,7 +144,11 @@ class CommentPage extends Component {
     if (this.loginInfo === null) {
       alert('未登录', '请您先登录!', [
         { text: 'Cancel', onPress: () => console.log('cancel') },
-        { text: 'Ok', onPress: () => this.props.history.replace('/login') }
+        {
+          text: 'Ok',
+          onPress: () =>
+            this.props.history.replace(`/login?url=${this.props.match.url}`)
+        }
       ])
     } else {
       this.isComment = true
@@ -152,7 +167,11 @@ class CommentPage extends Component {
     if (this.loginInfo === null) {
       alert('未登录', '请您先登录!', [
         { text: 'Cancel', onPress: () => console.log('cancel') },
-        { text: 'Ok', onPress: () => this.props.history.replace('/login') }
+        {
+          text: 'Ok',
+          onPress: () =>
+            this.props.history.replace(`/login?url=${this.props.match.url}`)
+        }
       ])
     } else {
       this.commentId = toUser._id
@@ -245,6 +264,20 @@ class CommentPage extends Component {
       this.replayInfo = res.data.data
     }
   }
+  indexChange = index => {
+    this.imgIndex = index
+  }
+  showImg = dex => {
+    this.imgIndex = dex
+    this.visible = true
+  }
+  showImgOne = () => {
+    this.imgIndex = 0
+    this.visible = true
+  }
+  closeImg = () => {
+    this.visible = false
+  }
   handleChange = () => {
     this.props.history.replace('/main/community')
   }
@@ -283,6 +316,7 @@ class CommentPage extends Component {
                       src={this.proxyUrl + this.articalone.imagefile[0]}
                       alt="帖子图片"
                       style={{ maxHeight: '140px', maxWidth: '100px' }}
+                      onClick={this.showImgOne}
                     />
                   ) : (
                     this.articalone.imagefile &&
@@ -292,10 +326,23 @@ class CommentPage extends Component {
                         alt="帖子图片"
                         key={dex}
                         style={{ height: '80px', width: '80px' }}
+                        onClick={() => this.showImg(dex)}
                       />
                     ))
                   )}
                 </div>
+                {/* 图片预览 */}
+                {this.articalone.imagefile && (
+                  <PhotoSlider
+                    images={this.articalone.imagefile.map(item => ({
+                      src: this.proxyUrl + item
+                    }))}
+                    visible={this.visible}
+                    onClose={this.closeImg}
+                    index={this.imgIndex}
+                    onIndexChange={this.indexChange}
+                  />
+                )}
                 <div className="list_date">
                   <span>{this.timestampToTime(this.articalone.date)}</span>
                   <span

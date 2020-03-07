@@ -33,32 +33,15 @@ class Community extends Component {
     this.reqIsLogin()
     this.proxyUrl = props.store.proxy
   }
-  // componentDidMount() {
-  //   document.addEventListener('keydown', this.handleKey)
-  // }
-  // handleKey(e) {
-  // if (this.imgIndex < 0) {
-  //   return
-  // }
-  // if(this.imgIndex<1) {
-  //   return
-  // }
-  //   switch (e.keyCode) {
-  //     case 37:
-  //       console.log(e)
-  //     case 39:
-  //       this.imgIndex++
-  //     default:
-  //       return
-  //   }
-  // }
+
   sendInfo = () => {
     if (this.loginInfo === null) {
       alert('未登录', '您还未登录,请您先登录！', [
         { text: '取消', onPress: () => console.log('cancel') },
         {
           text: '确定',
-          onPress: () => this.props.history.replace('/login')
+          onPress: () =>
+            this.props.history.replace(`/login?url=${this.props.match.url}`)
         }
       ])
     } else {
@@ -118,7 +101,8 @@ class Community extends Component {
         { text: '取消', onPress: () => console.log('cancel') },
         {
           text: '确定',
-          onPress: () => this.props.history.replace('/login')
+          onPress: () =>
+            this.props.history.replace(`/login?url=${this.props.match.url}`)
         }
       ])
     } else {
@@ -156,6 +140,11 @@ class Community extends Component {
   showImg = (index, dex) => {
     this.phptoIndex = index
     this.imgIndex = dex
+    this.visible = true
+  }
+  showImgOne = index => {
+    this.phptoIndex = index
+    this.imgIndex = 0
     this.visible = true
   }
   closeImg = () => {
@@ -217,6 +206,7 @@ class Community extends Component {
                           src={this.proxyUrl + info.imagefile[0]}
                           alt="帖子图片"
                           style={{ maxHeight: '140px', maxWidth: '100px' }}
+                          onClick={() => this.showImgOne(index)}
                         />
                       ) : (
                         info.imagefile.map((file, dex) => (

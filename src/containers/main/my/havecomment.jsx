@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { NavBar, Icon, Result } from 'antd-mobile'
 import { useHistory } from 'react-router-dom'
 import { reqHaveComment } from '../../../api'
-import { observer } from 'mobx-react'
 import store from '../../../store'
 function HaveComment() {
   const proxyUrl = store.proxy
@@ -77,4 +76,4 @@ function HaveComment() {
     </div>
   )
 }
-export default observer(HaveComment)
+export default HaveComment

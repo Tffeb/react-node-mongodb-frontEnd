@@ -46,7 +46,7 @@ class sendPage extends Component {
     this.contentValue = ''
   }
   toLogin = () => {
-    this.props.history.replace('/login')
+    this.props.history.replace(`/login?url=${this.props.match.url}`)
   }
   handleChange = () => {
     this.props.history.replace('/main/community')

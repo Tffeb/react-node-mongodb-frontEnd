@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import {
   NavBar,
   Icon,
@@ -11,11 +12,10 @@ import {
   Toast
 } from 'antd-mobile'
 import { reqHotSpotsDetail, reqIsLogin, reqOrder } from '../../../api'
-import { observer } from 'mobx-react'
 import store from '../../../store'
 const { RadioItem } = Radio
 const { alert } = Modal
-function BuyPage() {
+function BuyPage(props) {
   const proxyUrl = store.proxy
   let history = useHistory()
   const [ticket, setTicket] = useState('全票')
@@ -96,7 +96,14 @@ function BuyPage() {
     if (loginInfo.code === 1) {
       alert('未登录', '请您先登录!', [
         { text: 'Cancel', onPress: () => console.log('cancel') },
-        { text: 'Ok', onPress: () => history.push('/login') }
+        {
+          text: 'Ok',
+          onPress: () =>
+            history.push(
+              `/login?url=${props.location.pathname +
+                props.location.pathname.search}`
+            )
+        }
       ])
     } else {
       orderObj = {
@@ -166,4 +173,4 @@ function BuyPage() {
     </div>
   )
 }
-export default observer(BuyPage)
+export default withRouter(BuyPage)
