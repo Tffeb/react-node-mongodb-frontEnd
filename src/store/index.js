@@ -2,7 +2,7 @@ import { observable, action } from 'mobx'
 class Store {
   @observable address = '';
   @observable path = '';
-  @observable proxy = 'http://112.126.61.85:8080'
+  @observable proxy = 'http://47.96.150.58:8080'
   @observable userInfo = {}
   @action
   changeAddress = (index) => {

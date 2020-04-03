@@ -3,7 +3,6 @@
  */
 import ajax from './ajax'
 const BASE_URL = '/api'
-// import { reqUpdateUser } from './index';
 //注册接口
 export const reqRegister = (user) => ajax(BASE_URL + '/register', user, 'POST')
 //登录接口

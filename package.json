@@ -107,7 +107,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://112.126.61.85:8080",
+      "target": "http://47.96.150.58:8080",
       "changeOrigin": true,
       "pathRewrite": {
         "^/api": ""
