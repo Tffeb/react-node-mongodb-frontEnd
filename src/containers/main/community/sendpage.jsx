@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   NavBar,
   Icon,
@@ -7,71 +7,71 @@ import {
   TextareaItem,
   Toast,
   Modal,
-  Button
-} from 'antd-mobile'
-import { observable } from 'mobx'
-import { observer, inject } from 'mobx-react'
-import { reqIsLogin, reqArtical } from '../../../api'
-const alert = Modal.alert
-@inject('store')
+  Button,
+} from "antd-mobile";
+import { observable } from "mobx";
+import { observer, inject } from "mobx-react";
+import { reqIsLogin, reqArtical } from "../../../api";
+const alert = Modal.alert;
+@inject("store")
 @observer
 class sendPage extends Component {
-  @observable files = []
-  @observable loginInfo = {}
-  @observable contentValue = ''
-  @observable imageFiles = []
+  @observable files = [];
+  @observable loginInfo = {};
+  @observable contentValue = "";
+  @observable imageFiles = [];
   constructor(props) {
-    super(props)
-    this.reqIsLogin()
+    super(props);
+    this.reqIsLogin();
   }
   onChange = (files, type, index) => {
-    this.files = files
-  }
+    this.files = files;
+  };
   reqIsLogin = async () => {
-    const res = await reqIsLogin()
-    this.loginInfo = res.data
-  }
+    const res = await reqIsLogin();
+    this.loginInfo = res.data;
+  };
 
-  contentChange = value => {
-    this.contentValue = value
-  }
-  reqArtical = async content => {
-    const res = await reqArtical(content)
+  contentChange = (value) => {
+    this.contentValue = value;
+  };
+  reqArtical = async (content) => {
+    const res = await reqArtical(content);
     if (res.data.code === 0) {
       Toast.info(res.data.msg, 1, () => {
-        this.props.history.replace('/main/community')
-      })
+        this.props.history.replace("/main/community");
+      });
     }
-    this.files = []
-    this.contentValue = ''
-  }
+    this.files = [];
+    this.contentValue = "";
+  };
   toLogin = () => {
-    this.props.history.replace(`/login?url=${this.props.match.url}`)
-  }
+    this.props.history.replace(`/login?url=${this.props.match.url}`);
+  };
   handleChange = () => {
-    this.props.history.replace('/main/community')
-  }
+    this.props.history.replace("/main/community");
+  };
   pulishInfo = () => {
-    if (this.files.length === 0 && this.contentValue === '') {
-      Toast.info('内容不能为空!', 1, () => {
-        return
-      })
+    if (this.files.length === 0 && this.contentValue === "") {
+      Toast.info("内容不能为空!", 1, () => {
+        return;
+      });
     } else {
-      alert('发布', '您确定要发布吗?', [
-        { text: 'Cancel', onPress: () => console.log('cancel') },
+      alert("发布", "您确定要发布吗?", [
+        { text: "Cancel", onPress: () => console.log("cancel") },
         {
-          text: 'Ok',
+          text: "Ok",
           onPress: () => {
-            this.files.map(file => this.imageFiles.push(file.file))
-            var fd = new FormData()
-            fd.append('info', this.contentValue)
-            this.imageFiles.map(item => fd.append('file', item))
-            this.reqArtical(fd)
-          }
-        }
-      ])
+            this.files.map((file) => this.imageFiles.push(file.file));
+            var fd = new FormData();
+            fd.append("info", this.contentValue);
+            this.imageFiles.map((item) => fd.append("file", item));
+            this.reqArtical(fd);
+          },
+        },
+      ]);
     }
-  }
+  };
   render() {
     return (
       <div>
@@ -99,9 +99,9 @@ class sendPage extends Component {
               />
               <div
                 style={{
-                  lineHeight: '30px',
-                  fontSize: '16px',
-                  paddingLeft: '10px'
+                  lineHeight: "30px",
+                  fontSize: "16px",
+                  paddingLeft: "10px",
                 }}
               >
                 发表文字
@@ -120,8 +120,8 @@ class sendPage extends Component {
           </div>
         )}
       </div>
-    )
+    );
   }
 }
 
-export default sendPage
+export default sendPage;
