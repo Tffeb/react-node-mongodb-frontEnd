@@ -20,4 +20,6 @@ class Store {
   };
 }
 const store = new Store();
+// 我今天使用git参与了开发
 export default store;
+
