@@ -75,6 +75,11 @@ class Login extends Component {
     };
     return (
       <div>
+        <div>sdad
+          <div>sadaf
+            <p>444</p>
+          </div>
+        </div>
         <NavBar
           mode="dark"
           leftContent={<Icon type="left" onClick={this.toBack} />}
@@ -96,8 +101,8 @@ class Login extends Component {
           {this.usernameErrorMsg ? (
             <div style={style}>{this.usernameErrorMsg}</div>
           ) : (
-            ""
-          )}
+              ""
+            )}
           <InputItem
             type="password"
             placeholder="请输入密码"
