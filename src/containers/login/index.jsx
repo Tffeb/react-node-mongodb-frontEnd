@@ -75,9 +75,10 @@ class Login extends Component {
     };
     return (
       <div>
-        <div>hahhha
-          <span>eee</span>
-          <p>sdadasd</p>
+        <div>sdad
+          <div>sadaf
+            <p>444</p>
+          </div>
         </div>
         <NavBar
           mode="dark"
